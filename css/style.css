@@ -20,6 +20,13 @@
   --social-border: rgba(255,255,255,0.10);
   --social-hover: #27272a;
   --glow: rgba(168, 140, 255, 0.10);
+  --status-bg: rgba(34, 197, 94, 0.12);
+  --status-border: rgba(34, 197, 94, 0.25);
+  --status-text: #4ade80;
+  --primary-border: rgba(168, 140, 255, 0.4);
+  --primary-glow: 0 0 20px rgba(168, 140, 255, 0.15);
+  --badge-bg: rgba(168, 140, 255, 0.15);
+  --badge-text: #d8b4fe;
 }
 
 [data-theme="light"] {
@@ -38,6 +45,13 @@
   --social-border: rgba(0,0,0,0.08);
   --social-hover: #f3f4f6;
   --glow: rgba(99, 102, 241, 0.08);
+  --status-bg: rgba(22, 163, 74, 0.10);
+  --status-border: rgba(22, 163, 74, 0.25);
+  --status-text: #15803d;
+  --primary-border: rgba(99, 102, 241, 0.4);
+  --primary-glow: 0 0 20px rgba(99, 102, 241, 0.12);
+  --badge-bg: rgba(99, 102, 241, 0.12);
+  --badge-text: #4338ca;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -116,7 +130,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .profile-avatar-wrapper {
@@ -184,13 +198,49 @@ body {
 
 .profile-location i { font-size: 0.8rem; }
 
+.profile-bio {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  max-width: 380px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--status-bg);
+  border: 1px solid var(--status-border);
+  color: var(--status-text);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  box-shadow: 0 0 8px currentColor;
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
 .social-icon-row {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 6px;
+  margin-top: 4px;
   animation: fade-in 0.6s ease-out 0.12s both;
 }
 
@@ -271,6 +321,41 @@ body {
   border-color: var(--accent);
 }
 
+/* Primary CTA styling */
+.link-card--primary {
+  border-color: var(--primary-border);
+  box-shadow: var(--shadow), var(--primary-glow);
+}
+
+.link-card--primary:hover {
+  border-color: var(--badge-text);
+  box-shadow: var(--shadow-hover), var(--primary-glow);
+}
+
+.link-text-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.link-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--badge-text);
+  background: var(--badge-bg);
+  padding: 1px 6px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.link-badge i { font-size: 0.62rem; }
+
 .link-icon {
   width: 40px;
   height: 40px;
@@ -288,11 +373,14 @@ body {
 .link-card:hover .link-icon { transform: scale(1.08); }
 
 .link-text {
-  flex: 1;
   font-weight: 600;
   font-size: 0.95rem;
   text-align: left;
   overflow-wrap: break-word;
+}
+
+.link-card:not(.link-card--primary) .link-text {
+  flex: 1;
 }
 
 .link-arrow {
@@ -310,6 +398,14 @@ body {
   border-top: 1px solid var(--card-border);
   color: var(--muted);
   font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-tagline {
+  font-size: 0.72rem;
+  opacity: 0.75;
 }
 
 @media (min-width: 480px) {
@@ -318,11 +414,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *, *::before, *::after, .links-list li, .social-icon-row, .container {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
   }
+  .status-dot { animation: none !important; }
   body { background-image: radial-gradient(700px circle at 50% 18%, var(--glow), transparent 65%) !important; }
 }
 
@@ -343,5 +440,12 @@ body {
     --social-border: rgba(0,0,0,0.08);
     --social-hover: #f3f4f6;
     --glow: rgba(99, 102, 241, 0.08);
+    --status-bg: rgba(22, 163, 74, 0.10);
+    --status-border: rgba(22, 163, 74, 0.25);
+    --status-text: #15803d;
+    --primary-border: rgba(99, 102, 241, 0.4);
+    --primary-glow: 0 0 20px rgba(99, 102, 241, 0.12);
+    --badge-bg: rgba(99, 102, 241, 0.12);
+    --badge-text: #4338ca;
   }
 }
