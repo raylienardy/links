@@ -1,14 +1,14 @@
 # Raynato Lienardy — Personal Link Hub
 
-Website personal link-in-bio statis untuk **Raynato Lienardy**, Full-Stack Web & Mobile Developer berbasis di Makassar, Indonesia. Dibuat murni menggunakan HTML5 dan CSS3, di-host di GitHub Pages.
+Link-in-bio statis untuk Raynato Lienardy. Dark default, light optional, host GitHub Pages.
 
-## Struktur Project
+## Struktur
 
 ```
 links/
 ├── index.html
-├── css/
-│   └── style.css
+├── css/style.css
+├── js/main.js
 ├── assets/
 │   ├── profile.webp
 │   ├── favicon.png
@@ -16,24 +16,32 @@ links/
 └── README.md
 ```
 
-## Panduan Penggantian Aset & Placeholder
+## Ganti konten
 
-1. **Foto Profil (`assets/profile.webp`)**: Ganti dengan foto profil rasio 1:1 format WebP.
-2. **Favicon (`assets/favicon.png`)**: Ganti dengan icon website.
-3. **Open Graph Image (`assets/og-image.png`)**: Ganti dengan banner preview sosial media (1200x630px).
-4. **Instagram URL**: Edit `index.html`, ganti `https://instagram.com/USERNAME_ANDA` dengan URL Instagram profil Anda.
-5. **WhatsApp Number**: Edit `index.html`, ganti nomor pada `https://wa.me/62XXXXXXXXXX` dengan format internasional tanpa simbol `+` dan tanpa angka `0` di depan (contoh: `6281234567890`).
-6. **Email Publik**: Edit `index.html`, ganti `email@example.com` pada tag `mailto:email@example.com` dengan email aktif Anda.
+- **Foto**: `assets/profile.webp` atau URL di `index.html` → `img.profile-avatar`
+- **WA**: `https://wa.me/6285824855398`
+- **IG / Email**: icon row di header (`div.social-icon-row`)
+- **Portfolio/CV/GitHub/LinkedIn**: `ul.links-list` → `a.link-card`
 
-## Deploy ke GitHub Pages
+## Icon row — tambah TikTok / X
 
-1. Pastikan repository bernama `links` di akun GitHub `raylienardy`.
-2. Push branch `main` ke repository GitHub.
-3. Buka repository di GitHub -> **Settings** -> **Pages**.
-4. Pada bagian **Build and deployment**, pilih Source: **Deploy from a branch**, Branch: `main` dan `/ (root)`.
-5. Website akan tersedia di `https://raylienardy.github.io/links/`.
+```html
+<a href="https://tiktok.com/@USERNAME" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+<a href="https://x.com/USERNAME" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+```
 
-## Catatan Teknis
+Paste di `div.social-icon-row` di `index.html`.
 
-- **Static-Only**: Tidak ada build tool, package manager, bundler, framework, atau JavaScript.
-- **Ikon**: Menggunakan Font Awesome 6 Free via CDN resmi.
+## Tema
+
+- Toggle pojok kanan atas. Simpan `localStorage["theme"]`.
+- Default ikut `prefers-color-scheme`. Anti-FOUC via inline script di `<head>` sebelum CSS.
+
+## Deploy Pages
+
+Settings → Pages → Branch `main` / `root` → `https://raylienardy.github.io/links/`
+
+## Catatan
+
+- Vanilla JS saja (`js/main.js` → theme + mouse gradient RAF). Tanpa lib.
+- Font Awesome 6 + Google Fonts Inter.

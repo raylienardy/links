@@ -23,7 +23,18 @@
     <meta property="og:url" content="https://raylienardy.github.io/links/" />
     <meta property="og:image" content="assets/og-image.png" />
 
+    <!-- Anti-flash inline script for Theme -->
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme || systemTheme);
+      })();
+    </script>
+
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -34,6 +45,11 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- Theme Switcher Button -->
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme" aria-pressed="false">
+      <i class="fa-solid fa-sun" aria-hidden="true"></i>
+    </button>
+
     <main class="container">
       <header class="profile-header">
         <div class="profile-avatar-wrapper">
@@ -49,6 +65,34 @@
           <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
           <span>Makassar, Indonesia</span>
         </p>
+
+        <!-- Social Icon Row (Instagram & Email) -->
+        <div class="social-icon-row" aria-label="Media Sosial & Kontak Cepat">
+          <a
+            href="https://instagram.com/ryntlnrd"
+            class="social-icon-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <!-- Ganti / tambah TikTok nanti:
+          <a href="https://tiktok.com/@USERNAME" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+          -->
+          <!-- Ganti / tambah X / Twitter nanti:
+          <a href="https://x.com/USERNAME" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          -->
+          <a
+            href="mailto:raynlienardy@gmail.com"
+            class="social-icon-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Email"
+          >
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          </a>
+        </div>
       </header>
 
       <nav class="links-nav" aria-label="Tautan Profesional">
@@ -117,24 +161,6 @@
               ></span>
             </a>
           </li>
-          <!-- TODO: ganti dengan URL Instagram -->
-          <li>
-            <a
-              href="https://instagram.com/ryntlnrd"
-              class="link-card"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="link-icon"
-                ><i class="fa-brands fa-instagram" aria-hidden="true"></i
-              ></span>
-              <span class="link-text">Instagram</span>
-              <span class="link-arrow"
-                ><i class="fa-solid fa-arrow-right" aria-hidden="true"></i
-              ></span>
-            </a>
-          </li>
-          <!-- TODO: ganti dengan nomor bisnis format internasional tanpa + dan tanpa 0 depan (contoh: 6281234567890) -->
           <li>
             <a
               href="https://wa.me/6285824855398"
@@ -151,23 +177,6 @@
               ></span>
             </a>
           </li>
-          <!-- TODO: ganti dengan email publik -->
-          <li>
-            <a
-              href="mailto:raynlienardy@gmail.com"
-              class="link-card"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="link-icon"
-                ><i class="fa-solid fa-envelope" aria-hidden="true"></i
-              ></span>
-              <span class="link-text">Email</span>
-              <span class="link-arrow"
-                ><i class="fa-solid fa-arrow-right" aria-hidden="true"></i
-              ></span>
-            </a>
-          </li>
         </ul>
       </nav>
 
@@ -175,5 +184,7 @@
         <p>&copy; 2026 Raynato Lienardy</p>
       </footer>
     </main>
+
+    <script src="js/main.js" defer></script>
   </body>
 </html>
