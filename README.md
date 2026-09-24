@@ -11,8 +11,17 @@ links/
 ├── js/main.js
 ├── assets/
 │   ├── profile.webp
-│   ├── favicon.png
-│   └── og-image.png
+│   ├── favicon.svg
+│   ├── og-image.svg
+│   ├── icons/
+│   │   ├── favicon.svg (symlink/copy source)
+│   │   ├── favicon.ico
+│   │   ├── favicon-16x16.png
+│   │   ├── favicon-32x32.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── android-chrome-192x192.png
+│   │   └── android-chrome-512x512.png
+│   └── (opsional) og-image.png, qr.png
 └── README.md
 ```
 
@@ -40,15 +49,23 @@ Ganti teks `Open to opportunities`. Dot ikut warna teks via `currentColor`.
 ```
 Untuk pindah primary ke link lain, pindah class `link-card--primary` + blok `link-badge` + wrapper `link-text-group`. Untuk nonaktifkan hierarki, hapus `link-card--primary` dan kembalikan ke `<span class="link-text">Portfolio</span>` polos.
 
-**Hapus featured section** — tidak ada section terpisah. Featured = primary CTA di dalam list (anti duplikasi). Jika ingin hapus efek featured, hapus class `link-card--primary` seperti di atas. Style featured di `css/style.css` → `.link-card--primary`, `--primary-border`, `--primary-glow`, `.link-badge`.
-
 **Tambah TikTok / X di icon row** — `index.html` → `div.social-icon-row`, copy 1 baris:
 ```html
 <a href="https://tiktok.com/@USERNAME" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
 <a href="https://x.com/USERNAME" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
 ```
 
-**Foto / favicon / OG image** — ganti file di `assets/` atau URL `img.profile-avatar` di HTML.
+**Asset & Metadata**
+
+- **Favicon** — semua file di `assets/icons/`:
+  - `favicon.svg` → icon utama (modern browsers)
+  - `favicon.ico` → legacy browsers
+  - `favicon-16x16.png` / `favicon-32x32.png`
+  - `apple-touch-icon.png` (180×180, iOS)
+  - `android-chrome-192x192.png` / `android-chrome-512x512.png`
+  - Untuk generate ulang dari source SVG: upload `assets/favicon.svg` ke https://realfavicongenerator.net lalu replace semua file di `assets/icons/`.
+- **OG Image**: Edit `assets/og-image.svg` untuk kustomisasi share-preview. Convert ke `assets/og-image.png` 1200×630 (Inkscape / screenshot browser).
+- **QR Code**: Generate manual untuk `https://raylienardy.github.io/links/` → simpan `assets/qr.png` (untuk print/kartu nama).
 
 ## Tema
 
